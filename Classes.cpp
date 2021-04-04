@@ -13,7 +13,17 @@ public:
     {
         return width * height;
     }
+    Rectangle operator+ (const Rectangle&); //overloading operator
 };
+
+Rectangle Rectangle::operator+ (const Rectangle& parameters)    //what happens when overloading
+{
+    Rectangle new_param;
+    new_param.width = width + parameters.width;     //
+    new_param.height = height + parameters.height;  //adding parameters of classes
+    return new_param;
+}
+
 Rectangle::Rectangle()
 {
     width = 1;
@@ -66,5 +76,11 @@ int main()
 
     Parallelepiped para_1(3, 4, 8);
 
-    std::cout << "Volume of Parallelepiped is: " << para_1.volume();
+    std::cout << "Volume of Parallelepiped is: " << para_1.volume() << std::endl;
+
+    Rectangle sum_of_classes;
+
+    sum_of_classes = rectangle_1 + rectangle_2;
+
+    std::cout << "Area of sum of classes: " << sum_of_classes.area() << std::endl;  
 }
