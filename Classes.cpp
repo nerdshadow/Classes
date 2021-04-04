@@ -87,6 +87,24 @@ Other_Rectangle<temp>::Other_Rectangle(temp x, temp y)
     height = y;
 }
 
+template <>
+class Other_Rectangle<char>
+{
+private:
+    char x;
+public:
+    Other_Rectangle(char a);
+    void name()
+    {
+        std::cout << "Name of rectangle: " << x << std::endl;
+    }
+};
+
+Other_Rectangle<char>::Other_Rectangle(char a)
+{
+    x = a;
+}
+
 int main()
 {
     int x, y;
@@ -117,10 +135,12 @@ int main()
 
     std::cout << "Area of sum of classes: " << sum_of_classes.area() << std::endl;  
 
-    Other_Rectangle<int> circle_1(5, 4);
-    Other_Rectangle<double> circle_2(3.6, 7.2);
+    Other_Rectangle<int> o_rectangle_1(5, 4);
+    Other_Rectangle<double> o_rectangle_2(3.6, 7.2);
 
-    std::cout << "Area of circle 1: " << circle_1.area() << std::endl;
-    std::cout << "Area of circle 2: " << circle_2.area() << std::endl;
+    std::cout << "Area of rectangle 1: " << o_rectangle_1.area() << std::endl;
+    std::cout << "Area of rectangle 2: " << o_rectangle_2.area() << std::endl;
 
+    Other_Rectangle<char> o_rectangle_3('D');
+    o_rectangle_3.name();
 }
