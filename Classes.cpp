@@ -19,7 +19,7 @@ public:
 Rectangle Rectangle::operator+ (const Rectangle& parameters)    //what happens when overloading
 {
     Rectangle new_param;
-    new_param.width = width + parameters.width;     //
+    new_param.width = width + parameters.width;     //adding parameters of classes
     new_param.height = height + parameters.height;  //adding parameters of classes
     return new_param;
 }
