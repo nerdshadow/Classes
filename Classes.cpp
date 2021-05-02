@@ -88,72 +88,6 @@ Other_Rectangle<temp>::Other_Rectangle(temp x, temp y)
     height = y;
 }
 
-template <>
-class Other_Rectangle<char>
-{
-private:
-    char x;
-public:
-    Other_Rectangle(char a);
-    void name()
-    {
-        std::cout << "Name of rectangle: " << x << std::endl;
-    }
-};
-
-Other_Rectangle<char>::Other_Rectangle(char a)
-{
-    x = a;
-}
-
-class ClassForDestructor //new class for showing destructor`s work
-{
-private:
-    int* a;
-public:
-    ClassForDestructor();
-    ClassForDestructor(const int& x) : a(new int(x)) {};
-   
-    const int& message()
-    {
-        return *a;
-    }
-    ~ClassForDestructor()   //creating destructor
-    {
-        delete a;           //deleting "a" from memory to free space
-        std::cout << "a deleted from memory " << std::endl;
-    }
-};
-
-ClassForDestructor::ClassForDestructor()
-{
-    std::cout << "Nothing in" << std::endl;
-};
-
-//Showcase of friendly class
-
-class NewSquare 
-{
-    friend class NewRectangle;  //class NewRectangle is "friend" to class NewSquare
-private:
-    int side;
-public:
-    NewSquare(int s) : side(s) {};  
-};
-
-class NewRectangle
-{
-private:
-    int width = 0, height = 0;
-public:
-    int areaof() { return width * height; }
-    void redo(NewSquare s)                  //using @private@ data from NewSquare 
-    {
-        width = s.side;
-        height = s.side;
-    }
-};
-
 int main()
 {
     int x, y;
@@ -187,21 +121,9 @@ int main()
     Other_Rectangle<int> o_rectangle_1(5, 4);
     Other_Rectangle<double> o_rectangle_2(3.6, 7.2);
 
-    std::cout << "Area of rectangle 1: " << o_rectangle_1.area() << std::endl;
-    std::cout << "Area of rectangle 2: " << o_rectangle_2.area() << std::endl;
+    std::cout << "Area of circle 1: " << circle_1.area() << std::endl;
+    std::cout << "Area of circle 2: " << circle_2.area() << std::endl;
 
     Other_Rectangle<char> o_rectangle_3('D');
     o_rectangle_3.name();
-
-    ClassForDestructor destructortest(5);
-
-    std::cout << destructortest.message() << std::endl;
-
-    NewSquare sqr(6);
-    NewRectangle rect;
-    rect.redo(sqr);     
-    std::cout << rect.areaof() << std::endl;
-
-    std::cout << std::endl << "End" << std::endl;
-
 }
